@@ -42,17 +42,20 @@ function cubetech_clubs_shortcode($atts)
 	$class = '';
 	$return = '';
 	
-	if($single == 'true')
-		$class = ' cubetech-clubs-single';
-	
 	if($filter == true) {
-		$filterclass = ' cubetech-clubs-group-' . $terms[0]->slug;
 		
+		$childof = 0;
+		if($group != false && $group != 'all' && $group > 0) {
+			$childof = $group;
+		}
+
 		$args=array(
 			'hide_empty' => false,
 			'orderby' => 'name',
-			'order' => 'ASC'
+			'order' => 'ASC',
+			'child_of' => $childof,
 		);
+
 		$taxonomies = get_terms('cubetech_clubs_group', $args);
 
 		$return .= '<div class="cubetech-clubs-filter">
@@ -74,13 +77,32 @@ function cubetech_clubs_shortcode($atts)
 	
 		$post_meta_data = get_post_custom($post->ID);
 		$terms = wp_get_post_terms($post->ID, 'cubetech_clubs_group');
-		if($filter == true)
-			$filterclass = ' cubetech-clubs-group-' . $terms[0]->slug;
+		$filterclass = '';
+
+		if($filter == true) {
+		
+			foreach( $terms as $term ) {
+				$filterclass .= ' cubetech-clubs-group-' . $term->slug;
+			}
+		
+		}
+		
+		$mailfield = '';
+		if(isset($post_meta_data['cubetech_clubs_mail'][0]) && $post_meta_data['cubetech_clubs_mail'][0] != '')
+			$mailfield = '<br /><a href="mailto:' . $post_meta_data['cubetech_clubs_mail'][0] . '">' . $post_meta_data['cubetech_clubs_mail'][0] . '</a>';
+		
+		if($post_meta_data['cubetech_clubs_url'][0] != '') {
+			if (0 !== strpos($post_meta_data['cubetech_clubs_url'][0], 'http://') && 0 !== strpos($post_meta_data['cubetech_clubs_url'][0], 'https://')) {
+				$post_meta_data['cubetech_clubs_url'][0] = "http://{$post_meta_data['cubetech_clubs_url'][0]}";
+			}
+			$urlfield = '<br /><a href="' . $post_meta_data['cubetech_clubs_url'][0] . '" target="_blank">' . $post_meta_data['cubetech_clubs_url'][0] . '</a>';
+		}
+
 		
 		$return .= '
 		<tr class="cubetech-clubs' . $filterclass . '">
-			<td><strong>' . $post->post_title . '</strong><br />
-			<a href="' . $post_meta_data['cubetech_clubs_url'][0] . '" target="_blank">' . $post_meta_data['cubetech_clubs_url'][0] . '</a></td>
+			<td class="cubetech-clubs-title"><strong>' . $post->post_title .'</strong>
+			' . $urlfield . $mailfield . '</td>
 			<td>' . $post_meta_data['cubetech_clubs_contact'][0] . '</td>
 			<td class="cubetech-clubs-phone">' . $post_meta_data['cubetech_clubs_phone'][0] . '</td>
 		</tr>';

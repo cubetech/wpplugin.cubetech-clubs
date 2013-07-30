@@ -1,2 +1,4 @@
 thead .cubetech-clubs-phone { padding-left: 24px; }
 .cubetech-clubs .cubetech-clubs-phone { background-image: url(../img/phone-icon.png); background-repeat: no-repeat; background-position: left 9px; padding-left: 24px; }
+.cubetech-clubs td { width: 25%; }
+.cubetech-clubs td.cubetech-clubs-title { width: 50%; }
