@@ -22,6 +22,12 @@ $cubetech_club_meta_fields = array(
 		'type'	=> 'text'
 	),
 	array(
+		'label'=> 'Mailadresse',
+		'desc'	=> 'Mailadresse des Vereins oder der Kontaktperson',
+		'id'	=> $prefix.'mail',
+		'type'	=> 'text'
+	),
+	array(
 		'label'=> 'Website',
 		'desc'	=> 'Webauftritt des Vereins (mit http://)',
 		'id'	=> $prefix.'url',
