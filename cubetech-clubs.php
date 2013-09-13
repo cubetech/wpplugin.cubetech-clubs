@@ -3,7 +3,7 @@
  * Plugin Name: cubetech Clubs
  * Plugin URI: http://www.cubetech.ch
  * Description: cubetech Clubs - create list your clubs, easily
- * Version: 1.0
+ * Version: 1.0.1
  * Author: cubetech GmbH
  * Author URI: http://www.cubetech.ch
  */

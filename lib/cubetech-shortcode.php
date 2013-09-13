@@ -91,6 +91,7 @@ function cubetech_clubs_shortcode($atts)
 		if(isset($post_meta_data['cubetech_clubs_mail'][0]) && $post_meta_data['cubetech_clubs_mail'][0] != '')
 			$mailfield = '<br /><a href="mailto:' . $post_meta_data['cubetech_clubs_mail'][0] . '">' . $post_meta_data['cubetech_clubs_mail'][0] . '</a>';
 		
+		$urlfield = '';
 		if($post_meta_data['cubetech_clubs_url'][0] != '') {
 			if (0 !== strpos($post_meta_data['cubetech_clubs_url'][0], 'http://') && 0 !== strpos($post_meta_data['cubetech_clubs_url'][0], 'https://')) {
 				$post_meta_data['cubetech_clubs_url'][0] = "http://{$post_meta_data['cubetech_clubs_url'][0]}";
