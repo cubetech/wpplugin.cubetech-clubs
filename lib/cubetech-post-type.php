@@ -26,7 +26,6 @@ function cubetech_clubs_create_post_type() {
 			'supports' => array('title')
 		)
 	);
-	flush_rewrite_rules();
 }
 add_action('init', 'cubetech_clubs_create_post_type');
 ?>
