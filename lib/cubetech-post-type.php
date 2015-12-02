@@ -17,7 +17,7 @@ function cubetech_clubs_create_post_type() {
 			'capability_type' => 'post',
 			'taxonomies' => array('cubetech_clubs_group'),
 			'public' => true,
-			'has_archive' => false,
+			'has_archive' => true,
 			'rewrite' => array('slug' => 'clubs', 'with_front' => false),
 			'show_ui' => true,
 			'menu_position' => '20',

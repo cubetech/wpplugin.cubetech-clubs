@@ -13,13 +13,11 @@ include_once('lib/cubetech-shortcode.php');
 include_once('lib/cubetech-group.php');
 include_once('lib/cubetech-metabox.php');
 
-wp_enqueue_script('jquery');
-wp_register_script('cubetech_clubs_js', plugins_url('assets/js/cubetech-clubs.js', __FILE__), 'jquery');
-wp_enqueue_script('cubetech_clubs_js');
-
 add_action('wp_enqueue_scripts', 'cubetech_clubs_add_styles');
 
 function cubetech_clubs_add_styles() {
+	wp_register_script('cubetech_clubs_js', plugins_url('assets/js/cubetech-clubs.js', __FILE__), 'jquery');
+	wp_enqueue_script('cubetech_clubs_js');
 	wp_register_style('cubetech-clubs-css', plugins_url('assets/css/cubetech-clubs.css', __FILE__) );
 	wp_enqueue_style('cubetech-clubs-css');
 }
