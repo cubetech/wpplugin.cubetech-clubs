@@ -23,9 +23,40 @@ function cubetech_clubs_create_post_type() {
 			'menu_position' => '20',
 			'menu_icon' => null,
 			'hierarchical' => true,
-			'supports' => array('title')
+			'supports' => array('title'),
+			'capability_type' => 'clubs',
+			'capabilities' => array(
+		        'edit_post' => 'edit_club',
+		        'edit_posts' => 'edit_clubs',
+		        'edit_others_posts' => 'edit_other_clubs',
+		        'publish_posts' => 'publish_clubs',
+		        'read_post' => 'read_club',
+		        'read_private_posts' => 'read_private_clubs',
+		        'delete_post' => 'delete_clubs'
+		    ),
+			'map_meta_cap'	=> true
 		)
 	);
 }
 add_action('init', 'cubetech_clubs_create_post_type');
+add_action( 'admin_init', 'add_theme_caps');
+function add_theme_caps() {
+	    // gets the administrator role
+	    $admins = get_role( 'administrator' );
+	    
+	    $caps = array('capabilities' => array(
+		        'edit_post' => 'edit_club',
+		        'edit_posts' => 'edit_clubs',
+		        'edit_others_posts' => 'edit_other_clubs',
+		        'publish_posts' => 'publish_clubs',
+		        'read_post' => 'read_club',
+		        'read_private_posts' => 'read_private_clubs',
+		        'delete_post' => 'delete_clubs'
+		    ));
+
+	    
+	    foreach($caps as $cap) {
+			$admins->add_cap( $cap ); 	    
+	    }
+}
 ?>
